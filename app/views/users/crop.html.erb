@@ -1,0 +1,32 @@
+<h2>Crop image</h2>
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag "jquery.Jcrop" %>
+    <%= javascript_include_tag "jquery.Jcrop.min" %>
+
+<% end %>
+<%= image_tag @user.photo.url , id: 'crop' %>
+<%= form_for(@user) do |f| %>
+  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+     <%= f.text_field attribute, id: attribute %>
+  <% end %>
+  <%= f.submit 'crop' %>
+<% end %>
+
+<script>
+
+  $('#crop').Jcrop({
+      onChange: update_crop,
+      onSelect: update_crop,
+      setSelect: [0,0,500,500],
+      aspectRatio: 1
+  });
+
+
+   function update_crop(cords) {
+       $("#crop_x").val(cords.x);
+       $("#crop_y").val(cords.y);
+       $("#crop_w").val(cords.w);
+       $("#crop_h").val(cords.h);
+   }
+
+</script>
