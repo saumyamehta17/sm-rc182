@@ -1,9 +1,9 @@
 <h1>Listing users</h1>
 
-<table>
+<table class='striped' cellspacing="5" border="1px solid black">
   <tr>
     <th>Name</th>
-    <th></th>
+    <th>lists</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,6 +11,10 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
+    <td><% user.lists.each do |list|  %>
+          <%= list.name %> ,
+          <% end %>
+    </td>
     <td><%= image_tag user.photo.url %></td>
 
     <td><%= link_to 'Show', user %></td>
@@ -19,6 +23,7 @@
   </tr>
 <% end %>
 </table>
+<%#= select_tag "list[]", options_from_collection_for_select(@users, "id", "name"), :multiple=>true %>
 
 <br />
 

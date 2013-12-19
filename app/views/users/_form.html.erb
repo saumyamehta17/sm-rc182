@@ -18,6 +18,11 @@
   <div class="field">
     <%= f.label :Photo %><br />
     <%= f.file_field :photo %>
+
+  </div>
+  <div class="field">
+    <%= label_tag 'multiple select' %><br/>
+    <%= select_tag "list[]", options_for_select(["Free", "Basic", "Advanced", "Super Platinum"])  , :multiple=>true %>
   </div>
   <div class="actions">
     <%= f.submit %>

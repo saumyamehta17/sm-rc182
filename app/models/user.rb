@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   has_attached_file :photo, :styles => { :small => "100x100#" , :larger => "500x500>" }
+  has_many :lists
 
   after_update :reprocess_photo, if: :cropping
 

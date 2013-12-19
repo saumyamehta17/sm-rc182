@@ -40,10 +40,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+
     @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
+        params[:list].each do |list|
+          @user.lists.create(name: list)
+        end
         unless params[:user][:photo].present?
           redirect_to @user, notice: 'User was successfully created.'
         else
