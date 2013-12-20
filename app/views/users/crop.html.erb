@@ -4,10 +4,10 @@
     <%= javascript_include_tag "jquery.Jcrop.min" %>
 
 <% end %>
-<%= image_tag @user.photo.url , id: 'crop' %>
+<%= image_tag @user.photo.url(:small) , id: 'crop' %>
 <%= form_for(@user) do |f| %>
   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-     <%= f.text_field attribute, id: attribute %>
+     <%= f.hidden_field attribute, id: attribute %>
   <% end %>
   <%= f.submit 'crop' %>
 <% end %>

@@ -15,7 +15,7 @@
           <%= list.name %> ,
           <% end %>
     </td>
-    <td><%= image_tag user.photo.url %></td>
+    <td><%= image_tag user.photo.url(:small) %></td>
 
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

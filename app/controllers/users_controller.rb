@@ -45,8 +45,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        params[:list].each do |list|
-          @user.lists.create(name: list)
+        unless params[:list].blank?
+          params[:list].each do |list|
+            @user.lists.create(name: list)
+          end
         end
         unless params[:user][:photo].present?
           redirect_to @user, notice: 'User was successfully created.'
@@ -63,7 +65,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         unless params[:user][:photo].present?
@@ -90,7 +91,7 @@ class UsersController < ApplicationController
   end
 
   def crop
-    debugger
+
     @user = User.find(params[:id])
   end
 end
